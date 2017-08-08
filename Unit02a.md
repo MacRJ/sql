@@ -34,9 +34,17 @@ select animals.name from animals join species on animals.species_id = species.id
 USE AN AGGREGATE QUERIES TO ACHIEVE THE FOLLOWING:
 
 * write a query tells us the average trainer level of all of the trainers
+select avg(trainers.trainer_level) from trainers;
 * write a query that tells us the name of the trainer with the highest level
+select trainer_name, trainer_level from trainers where trainer_level = (select max(trainer_level) from trainers);
 
 CONSTRUCT THE FOLLOWING:
 
 * build a new table called "days of the week ", numbered 0 - 6 from Sunday to Saturday
+create table days_of_the_week (
+Number int,
+Day varchar(255)
+)
 * write a query telling us all of the animals who have appointments on Sunday and who they're training with. This will require you using a join table.  Research join tables.  Is there a join table in the zoo table? which one is it, and how do you use it ?
+
+select animals.name as Animal_Name, trainers.trainer_name as Trainer_name from animals join appointments on (animals.id = appointments.animal_id) join trainers on (appointments.trainer_id = trainers.id) where appointments.day_of_week = (select day_of_week from appointments join days_of_the_week on (appointments.day_of_week = days_of_the_week.number) where days_of_the_week.day = 'Sunday')
