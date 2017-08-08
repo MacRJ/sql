@@ -2,25 +2,34 @@
 
 Instructions:
 For each written part of this assignment, write the query underneath the line
-## PLEASE ALSO DO THESE EXERCISES ON YOUR MACHINE. 
+## PLEASE ALSO DO THESE EXERCISES ON YOUR MACHINE.
 
-When finished, submit a pull request. 
+When finished, submit a pull request.
 
 * create a new database and name is it zoo
 * import zoo.sql into that new database
 * using sql, write a query that selects all animals
+select * from animals;
 * select and display just the name of every animal   
+select name from animals;
 * write a query that updates the name of "Smokey" to "Smokey the Bear"
+update animals set name = 'Smokey the Bear' where name = 'Smokey';
 * write a query that updates the name of "Fozzie" to "Fozzie the Bear"
+update animals set name = 'Fozzie the Bear' where name = 'Fozzie';
 * insert a new animal named Marlin with a species id that correspond to "fish".
+insert into animals(name, species_id) values ('Marlin', 4);
 
 
 USE JOINS TO ACHIEVE THE FOLLOWING :
 
 * write a query that outputs all animals and their species name
+select animals.name, species.name from animals join species on animals.species_id = species.id;
 * write a query that outputs all of the fish ( must use a join )
+select animals.name from animals join species on animals.species_id = species.id where species.name = 'fish'
 * write a query that outputs all of the lions
+select animals.name from animals join species on animals.species_id = species.id where species.name = 'lion';
 * write a query that outputs all of the animals that are a mouse or a bear (you may need to think and discuss how to do this)
+select animals.name from animals join species on animals.species_id = species.id where species.name = 'bear' or species.name = 'mouse';
 
 USE AN AGGREGATE QUERIES TO ACHIEVE THE FOLLOWING:
 
